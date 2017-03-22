@@ -1,0 +1,3 @@
+[submodule "sprout"]
+	path = sprout
+	url = git@github.com:NBCUOTS/Publisher7_sproutonline
