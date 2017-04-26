@@ -201,7 +201,7 @@ installed_extras:
   - nodejs
   - pimpmylog
   # - redis
-  # - ruby
+  - ruby
   # - selenium
   # - solr
   # - tideways
@@ -285,7 +285,9 @@ npm_config_prefix: "/home/{{ drupalvm_user }}/.npm-global"
 
 # Ruby Configuration (if enabled above).
 ruby_install_gems_user: "{{ drupalvm_user }}"
-ruby_install_gems: []
+ruby_install_gems: 
+  - compass
+  - sass
 
 # Varnish Configuration (if enabled above).
 varnish_listen_port: "81"
@@ -298,7 +300,7 @@ pimpmylog_install_dir: /usr/share/php/pimpmylog
 pimpmylog_grant_all_privs: true
 
 # XDebug configuration. XDebug is disabled by default for better performance.
-php_xdebug_default_enable: 1
+php_xdebug_default_enable: 0
 php_xdebug_coverage_enable: 0
 php_xdebug_cli_enable: 1
 php_xdebug_remote_enable: 1
