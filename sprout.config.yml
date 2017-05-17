@@ -1,7 +1,7 @@
 ---
 # `vagrant_box` can also be set to geerlingguy/centos6, geerlingguy/centos7,
 # geerlingguy/ubuntu1404, geerlingguy/ubuntu1204, parallels/ubuntu-14.04, etc.
-vagrant_box: geerlingguy/ubuntu1604
+vagrant_box: nhinds/xenial64
 vagrant_user: vagrant
 vagrant_synced_folder_default_type: nfs
 vagrant_gui: false
@@ -20,14 +20,10 @@ vagrant_public_ip: ""
 # A list of synced folders, with the keys 'local_path', 'destination', and
 # a 'type' of [nfs|rsync|smb] (leave empty for slow native shares). See
 # http://docs.drupalvm.com/en/latest/extras/syncing-folders/ for more info.
-vagrant_synced_folders:
+vagrant_synced_folders: []
   # The first synced folder will be used for the default Drupal installation, if
   # any of the build_* settings are 'true'. By default the folder is set to
   # the drupal-vm folder.
-  - local_path: .
-    destination: /var/www/drupalvm
-    type: nfs
-    create: true
 
 # Memory and CPU to use for this VM.
 vagrant_memory: 2048
@@ -241,7 +237,7 @@ firewall_allowed_tcp_ports:
   - "9200"
 firewall_log_dropped_packets: false
 firewall_disable_firewalld: true
-firewall_disable_ufw: true
+firewall_disable_ufw: false
 
 # PHP Configuration. Currently-supported versions: 5.6, 7.0, 7.1.
 # See version-specific notes: http://docs.drupalvm.com/en/latest/configurations/php/
