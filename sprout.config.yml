@@ -89,7 +89,11 @@ drupal_site_install_extra_args: []
 
 # Cron jobs are added to the vagrant user's crontab. Keys include name
 # (required), minute, hour, day, weekday, month, job (required), and state.
-drupalvm_cron_jobs: []
+drupalvm_cron_jobs: 
+  - {
+      name: "ultimate cron",
+      job: "/usr/local/bin/drush cron-run --uri=http://{{ vagrant_hostname }}/ --root={{ drupal_core_path }}"
+    }
 
 # Drupal VM automatically creates a drush alias file in your ~/.drush folder if
 # this variable is 'true'.
@@ -140,8 +144,8 @@ apache_mods_enabled:
 apache_vhosts_ssl:
   - servername: "{{ drupal_domain }}"
     documentroot: "{{ drupal_core_path }}"
-    certificate_file: "/vagrant/local-sprout-cert.pem"
-    certificate_key_file: "/vagrant/local-sprout-key.pem"
+    certificate_file: "/vagrant/local-sprout.crt"
+    certificate_key_file: "/vagrant/local-sprout.key"
     extra_parameters: |
           ProxyPassMatch ^/(.*\.php(/.*)?)$ "fcgi://127.0.0.1:9000{{ drupal_core_path }}"
 
@@ -221,6 +225,8 @@ installed_extras:
 # Add any extra apt or yum packages you would like installed.
 extra_packages:
   - sqlite
+  - php-soap
+
 
 # You can configure almost anything else on the server in the rest of this file.
 extra_security_enabled: false
